@@ -11,5 +11,5 @@ with st.sidebar:
     with st.echo():
         st.write("Audit Scribe")
 
-st.logo(img,link="https://auditscribe.streamlit.app/",size="large")
+st.sidebar.image(img, use_column_width=True)
 st.sidebar.markdown("AUDIT SCRIBE")
