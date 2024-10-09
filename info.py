@@ -8,7 +8,8 @@ response = requests.get(url)
 img = Image.open(requests.get(url, stream=True).raw)
 
 with st.sidebar:
-    st.logo(img,link="https://auditscribe.streamlit.app/")
     with st.echo():
         st.write("Audit Scribe")
 
+st.logo(img,link="https://auditscribe.streamlit.app/")
+st.sidebar.markdown("AUDIT SCRIBE")
