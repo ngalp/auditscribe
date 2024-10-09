@@ -9,4 +9,4 @@ streamlit-feedback
 langchain-community
 pandas
 requests
-streamlit_extras
+streamlit-extras
