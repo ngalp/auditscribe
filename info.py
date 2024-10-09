@@ -1,12 +1,14 @@
 import streamlit as st
+from PIL import Image
+import requests
+from io import BytesIO
+
+url='https://github.com/ngalp/auditscribe/blob/main/images/logo.png?raw=true'
+response = requests.get(url)
+img = Image.open(requests.get(url, stream=True).raw)
+
 with st.sidebar:
+    st.logo(img,link="https://auditscribe.streamlit.app/")
     with st.echo():
         st.write("Audit Scribe")
 
-LOGO_URL_LARGE="https://github.com/ngalp/auditscribe/blob/main/images/logo.png?raw=true"
-LOGO_URL_SMALL="https://github.com/ngalp/auditscribe/blob/main/images/logo.png?raw=true"
-st.logo(
-    LOGO_URL_LARGE,
-    link="https://auditscribe.streamlit.app/",
-    icon_image=LOGO_URL_SMALL, width=100
-)
