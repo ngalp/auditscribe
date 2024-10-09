@@ -7,3 +7,6 @@ trubrics
 streamlit-feedback
 langchain-community
 pandas
+io
+requests
+PIL
