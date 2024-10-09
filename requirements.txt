@@ -7,4 +7,3 @@ trubrics
 streamlit-feedback
 langchain-community
 pandas
-json
