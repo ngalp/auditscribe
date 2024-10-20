@@ -6,55 +6,24 @@ url='https://github.com/ngalp/auditscribe/blob/main/images/logo.png?raw=true'
 response = requests.get(url)
 img = Image.open(requests.get(url, stream=True).raw)
 
-st.logo(img,link='https://auditscribe.streamlit.app/', icon_image=img)
+#st.logo(img,link='https://auditscribe.streamlit.app/', icon_image=img)
 
 st.text('Fixed width text')
 
-import base64
+from PIL import Image
 import streamlit as st
 
+# You can always call this function where ever you want
 
-@st.cache(allow_output_mutation=True)
-def get_base64_of_bin_file(png_file):
-    with open(png_file, "rb") as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
+def add_logo(logo_path, width, height):
+    """Read and return a resized logo"""
+    logo = Image.open(requests.get(url, stream=True).raw)
+    modified_logo = logo.resize((width, height))
+    return modified_logo
 
+my_logo = add_logo(logo_path=url, width=50, height=60)
+st.sidebar.image(my_logo)
 
-def build_markup_for_logo(
-    png_file,
-    background_position="50% 10%",
-    margin_top="10%",
-    image_width="60%",
-    image_height="",
-):
-    binary_string = get_base64_of_bin_file(png_file)
-    return """
-            <style>
-                [data-testid="stSidebarNav"] {
-                    background-image: url("data:image/png;base64,%s");
-                    background-repeat: no-repeat;
-                    background-position: %s;
-                    margin-top: %s;
-                    background-size: %s %s;
-                }
-            </style>
-            """ % (
-        binary_string,
-        background_position,
-        margin_top,
-        image_width,
-        image_height,
-    )
+# OR
 
-
-def add_logo(png_file):
-    logo_markup = build_markup_for_logo(png_file)
-    st.markdown(
-        logo_markup,
-        unsafe_allow_html=True,
-    )
-
-add_logo(img)
-
-st.markdown("# Home")
+# st.sidebar.image(add_logo(logo_path="your/logo/path", width=50, height=60)) 
