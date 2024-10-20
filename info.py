@@ -55,6 +55,6 @@ def add_logo(png_file):
         unsafe_allow_html=True,
     )
 
-add_logo(url)
+add_logo(img)
 
 st.markdown("# Home")
