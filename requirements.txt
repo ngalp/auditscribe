@@ -1,11 +1,12 @@
 streamlit
 streamlit_extras
+streamlit-feedback
+streamlit_javascript
 langchain
 openai
 duckduckgo-search
 anthropic
 trubrics
-streamlit-feedback
 langchain-community
 pandas
 requests
