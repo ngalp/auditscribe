@@ -7,3 +7,5 @@ response = requests.get(url)
 img = Image.open(requests.get(url, stream=True).raw)
 
 st.logo(img,link='https://auditscribe.streamlit.app/', icon_image=img)
+
+st.text('Fixed width text')
