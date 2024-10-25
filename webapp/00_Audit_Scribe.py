@@ -1,10 +1,11 @@
 import streamlit as st
-from webapp.logo import icon, logo
+#from webapp.logo import icon, logo
 
-st.set_page_config(page_title="Audit Scribe", page_icon=icon, layout="wide")
+#st.set_page_config(page_title="Audit Scribe", page_icon=icon, layout="wide")
+st.set_page_config(page_title="Audit Scribe",  layout="wide")
 
 # You can always call this function where ever you want
-st.markdown("## 00_ – Your Audit Assistant!")
+st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
 multi='''👋 Say hello to **Audit Scribe** ✏️—the friendly, always-ready virtual assistant here to supercharge your audit workflow! Whether you’re 📝 drafting emails, 🔍 clarifying policies, or 📊 summarizing findings, Audit Scribe takes the heavy lifting out of repetitive tasks.\  
 
