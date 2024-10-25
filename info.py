@@ -14,19 +14,17 @@ from PIL import Image
 import streamlit as st
 
 # You can always call this function where ever you want
+st.set_page_config(page_title="HDB Kaki", page_icon=img, layout="wide")
 
-def add_logo(logo_path, width, height):
-    """Read and return a resized logo"""
-    logo = Image.open(requests.get(url, stream=True).raw)
-    modified_logo = logo.resize((width, height))
-    return modified_logo
+st.image(img, width=500)
 
-my_logo = add_logo(logo_path=url, width=60, height=60)
-#st.sidebar.image(my_logo)
+st.markdown("## ✏️ Meet Audit Scribe – Your Audit Sidekick!")
 
-from streamlit_javascript import st_javascript
-st_theme = st_javascript("""window.getComputedStyle(window.parent.document.getElementsByClassName("stApp")[0]).getPropertyValue("color-scheme")""")
-if st_theme == "dark":
-    st.sidebar.image(my_logo)
-else:
-    st.sidebar.image(my_logo)
+st.markdown(
+    "👋 Say hello to **Audit Scribe** ✏️—the friendly, always-ready virtual assistant here to supercharge your audit workflow! Whether you’re 📝 drafting emails, 🔍 clarifying policies, or 📊 summarizing findings, Audit Scribe takes the heavy lifting out of repetitive tasks.  
+
+With smart, AI-powered insights at your fingertips, you’ll breeze through audits with confidence and focus on what really matters—💡 driving impactful results. Just ask away, and let Audit Scribe be your go-to companion, making audits smoother, faster, and even a little more fun! 🚀  
+
+Your audit journey just got a whole lot easier—let’s get started! 🎉
+")
+
