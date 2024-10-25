@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import requests
+st.set_page_config(page_title="Audit Scribe", page_icon=img, layout="wide")
 
 url='https://github.com/ngalp/auditscribe/blob/main/images/logo.png?raw=true'
 response = requests.get(url)
@@ -14,7 +15,6 @@ from PIL import Image
 import streamlit as st
 
 # You can always call this function where ever you want
-st.set_page_config(page_title="HDB Kaki", page_icon=img, layout="wide")
 
 st.image(img, width=500)
 
