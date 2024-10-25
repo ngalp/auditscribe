@@ -26,5 +26,5 @@ multi='''👋 Say hello to **Audit Scribe** ✏️—the friendly, always-ready 
 With smart, AI-powered insights at your fingertips, you’ll breeze through audits with confidence and focus on what really matters—💡 driving impactful results. Just ask away, and let Audit Scribe be your go-to companion, making audits smoother, faster, and even a little more fun! 🚀\  
 
 Your audit journey just got a whole lot easier—let’s get started! 🎉\
-''')
+'''
 
