@@ -1,4 +1,4 @@
 from .icon import icon
-from .logo import logo
+from .utils import utils
 
-__all__ = [logo, icon]
+__all__ = [icon, utils]

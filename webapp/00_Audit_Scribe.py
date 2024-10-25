@@ -1,5 +1,5 @@
 import streamlit as st
-from webapp.logo import icon
+from webapp.logo import icon, logo
 
 st.set_page_config(page_title="Audit Scribe", page_icon=icon, layout="wide")
 
