@@ -1,6 +1,6 @@
 from PIL import Image
-from urllib.request import urlopen
+import requests
+from io import BytesIO
 
-from webapp.utils import get_project_root
-
-icon =Image.open(urlopen('get_project_root() / "webapp" / "logo" / "logo.png?raw=true"'))
+response = requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/logo.png?raw=true')
+logo =Image.open(BytesIO(response.content))
