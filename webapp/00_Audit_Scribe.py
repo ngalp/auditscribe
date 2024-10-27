@@ -9,7 +9,7 @@ st.set_page_config(page_title="Audit Scribe",page_icon="✏️", layout="wide")
 logo =Image.open(BytesIO(requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/logo.ico?raw=true').content))
 icon =Image.open(BytesIO(requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/icon.ico?raw=true').content))
    
-st.logo(logo,  link='https://auditscribe.streamlit.io', icon_image=icon)
+st.logo(logo,  link='https://auditscribe.streamlit.app', icon_image=icon)
 # You can always call this function where ever you want
 st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
