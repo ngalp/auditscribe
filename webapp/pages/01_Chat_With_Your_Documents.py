@@ -1,19 +1,36 @@
 import streamlit as st
 from openai import OpenAI
 
+# the first section is adapted from https://github.com/mmz-001/knowledge_gpt/blob/main/knowledge_gpt/main.py
+
+EMBEDDING = "openai"
+VECTOR_STORE = "faiss"
+MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
+
+
 with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="file_qa_api_key", type="password")
-  
+    openai_api_key = st.text_input("OpenAI API Key", key="file_qa_api_key", type="password",placeholder="Paste your OpenAI API key here",)
+
+    if not openai_api_key:
+        st.warning(
+            "Enter your OpenAI API key in the sidebar. You can get a key at"
+            " https://platform.openai.com/account/api-keys."
+        )
+
 st.title("📝 Chat With Your Documents")
-uploaded_file = st.file_uploader("Upload your document", type=("txt", "md"))
+uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
+
+model: str = st.selectbox("Model", options=MODEL_LIST)  
+
+with st.expander("Advanced Options"):
+    return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
+    show_full_doc = st.checkbox("Show parsed contents of the document")
+
 question = st.text_input(
     "Ask something about the article",
     placeholder="Can you give me a short summary?",
     disabled=not uploaded_file,
 )
-
-if uploaded_file and question and not openai_api_key:
-    st.info("Please add your OpenAI API key to continue.")
 
 if uploaded_file and question and openai_api_key:
     # Create an OpenAI client.
@@ -30,7 +47,7 @@ if uploaded_file and question and openai_api_key:
 
     # Generate an answer using the OpenAI API.
     stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model=model,
         messages=messages,
         stream=True,
         )
