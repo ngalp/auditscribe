@@ -4,8 +4,8 @@ from openai import OpenAI
 with st.sidebar:
     openai_api_key = st.text_input("OpenAI API Key", key="file_qa_api_key", type="password")
   
-st.title("📝 Document Q&A with OpenAI")
-uploaded_file = st.file_uploader("Upload an article", type=("txt", "md"))
+st.title("📝 Chat With Your Documents")
+uploaded_file = st.file_uploader("Upload your document", type=("txt", "md"))
 question = st.text_input(
     "Ask something about the article",
     placeholder="Can you give me a short summary?",
