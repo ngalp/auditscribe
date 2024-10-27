@@ -1,8 +1,8 @@
 import streamlit as st
 #from webapp.logo import icon, logo
 
-#st.set_page_config(page_title="Audit Scribe", page_icon=icon, layout="wide")
-st.set_page_config(page_title="Audit Scribe",  layout="wide")
+st.set_page_config(page_title="Audit Scribe", page_icon=icon, layout="wide")
+#st.set_page_config(page_title="Audit Scribe",  layout="wide")
 
 # You can always call this function where ever you want
 st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")

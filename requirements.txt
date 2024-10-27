@@ -1,12 +1,1 @@
 streamlit
-streamlit_extras
-streamlit-feedback
-streamlit_javascript
-langchain
-openai
-duckduckgo-search
-anthropic
-trubrics
-langchain-community
-pandas
-requests
