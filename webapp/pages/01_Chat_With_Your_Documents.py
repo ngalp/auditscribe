@@ -13,7 +13,9 @@ MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
 
 with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="file_qa_api_key", type="password",placeholder="Paste your OpenAI API key here",)
+    openai_key = st.text_input(label = ":key: OpenAI API Key:", key="file_qa_api_key", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password",placeholder="Paste your OpenAI API key here")
+    hf_key = st.text_input(label = ":hugging_face: HuggingFace API Key:",help="Required for Code Llama", type="password",placeholder="Paste your HuggingFace API key here")
+
 
     if not openai_api_key:
         st.warning(

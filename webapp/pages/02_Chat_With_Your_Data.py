@@ -21,11 +21,11 @@ datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/aud
 datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
 
 
-key_col1,key_col2 = st.columns(2)
-openai_key = key_col1.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
-hf_key = key_col2.text_input(label = ":hugging_face: HuggingFace Key:",help="Required for Code Llama", type="password")
-
 with st.sidebar:
+
+    openai_key = st.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
+    hf_key = st.text_input(label = ":hugging_face: HuggingFace Key:",help="Required for Code Llama", type="password")
+
     # First we want to choose the dataset, but we will fill it with choices once we've loaded one
     dataset_container = st.empty()
 
