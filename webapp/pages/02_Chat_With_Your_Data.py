@@ -7,7 +7,7 @@ import openai
 import streamlit as st
 #import streamlit_nested_layout
 from classes import get_primer,format_question,run_request
-#import warnings
+import warnings
 
 st.title("📊 Chat With Your Data")
 
@@ -49,7 +49,7 @@ with st.sidebar:
     st.write(":brain: Choose your model(s):")
     # Keep a dictionary of whether models are selected or not
     use_model = st.selectbox(label="Select Model",options=list(available_models.keys()))
- 
+
  # Text area for query
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
