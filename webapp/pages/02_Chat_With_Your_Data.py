@@ -125,13 +125,13 @@ if go_btn and model_count > 0:
 
 # Display the datasets in a list of tabs
 # Create the tabs
-tab_list = st.tabs(list(datasets.keys()))
+tab_list = st.tabs(datasets.keys())
 
 # Load up each tab with a dataset
 for dataset_num, tab in enumerate(tab_list):
     with tab:
         # Can't get the name of the tab! Can't index key list. So convert to list and index
-        dataset_name = tab_list[dataset_num]
+        dataset_name = list(datasets.keys())[dataset_num]
         st.subheader(dataset_name)
         st.write(datasets[dataset_name])
 
