@@ -4,7 +4,9 @@ from langchain.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
 
 def run_request(question_to_ask, model_type, key, alt_key):
+    client = OpenAI(api_key=key)
     if model_type == "gpt-4" or model_type == "gpt-3.5-turbo" :
+        
         # Run OpenAI ChatCompletion API
         task = "Generate Python Code Script."
         if model_type == "gpt-4":
