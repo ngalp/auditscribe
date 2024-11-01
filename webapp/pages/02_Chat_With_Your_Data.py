@@ -56,7 +56,7 @@ if not openai_api_key:
         " https://platform.openai.com/account/api-keys."
     )
 
-try
+try:
     primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
     # Create model, run the request and print the results
     question_to_ask = format_question(primer1, primer2, question, model)   
