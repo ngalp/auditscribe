@@ -53,14 +53,14 @@ with st.sidebar:
     model: str = st.selectbox("Model", options=MODEL_LIST)  
 
  # Text area for query
-question = st.text_area(":eyes: What would you like to visualise?",height=10)
+question = st.text_area(":eyes: What would you like to know?",height=10)
 go_btn = st.button("Go...")
 
 if question and openai_api_key:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
     data_string = datasets[chosen_dataset].to_csv(header=None, index=False).strip('\n').split('\n')
-    data_desc = "Use a dataframe from the csv with columns '" \
+    data_desc = "The dataframe has columns '" \
             + "','".join(str(x) for x in datasets[chosen_dataset].columns) + "'. "
     for i in datasets[chosen_dataset].columns:
         if len(datasets[chosen_dataset][i].drop_duplicates()) < 20 and datasets[chosen_dataset].dtypes[i]=="O":
@@ -68,11 +68,11 @@ if question and openai_api_key:
                 "','".join(str(x) for x in datasets[chosen_dataset][i].drop_duplicates()) + "'. "
         elif datasets[chosen_dataset].dtypes[i]=="int64" or datasets[chosen_dataset].dtypes[i]=="float64":
             data_desc = data_desc + "\nThe column '" + i + "' is type " + str(datasets[chosen_dataset].dtypes[i]) + " and contains numeric values. "   
-    data_desc = data_desc + "\nThe data fields in the csv are: '"
+ 
     messages = [
         {
             "role": "user",
-            "content": f"{data_desc} '\n\n\n\n' {data_string} ",
+            "content": f"Given the dataframe, answer the following question: {question} \n\n---\n\n {data_desc} \n\n---\n\n {data_string}  ",
         }
         ]
 
