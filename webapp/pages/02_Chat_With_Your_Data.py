@@ -21,7 +21,8 @@ st.title("📊 Chat With Your Data")
 
 
 available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3": "text-davinci-003",
-                        "GPT-3.5 Instruct": "gpt-3.5-turbo-instruct","Code Llama":"CodeLlama-34b-Instruct-hf"}
+                        "GPT-3.5 Instruct": "gpt-3.5-turbo-instruct"
+                        }
 
 # List to hold datasets
 if "datasets" not in st.session_state:
@@ -30,6 +31,7 @@ if "datasets" not in st.session_state:
     datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
     datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
     st.session_state["datasets"] = datasets
+    display(datasets["Reimbursement"] .sample())
 else:
     # use the list already loaded
     datasets = st.session_state["datasets"]
