@@ -28,7 +28,7 @@ if "datasets" not in st.session_state:
     datasets = {}
     # Preload datasets
     datasets["Transport"] = pd.read_csv("https://github.com/ngalp/auditscribe/raw/refs/heads/main/webapp/data/Transport_Claims.csv?raw=true")
-    datasets["Reimbursement"] =pd.read_csv("https://github.com/ngalp/auditscribe/raw/refs/heads/main/webapp/data/Emmployee_Reimbursements.csv")
+    datasets["Reimbursement"] =pd.read_csv("https://github.com/ngalp/auditscribe/raw/refs/heads/main/webapp/data/Employee_Reimbursements.csv?raw=true")
     st.session_state["datasets"] = datasets
 else:
     # use the list already loaded
