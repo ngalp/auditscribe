@@ -23,8 +23,8 @@ datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/
 
 with st.sidebar:
 
-    openai_key = st.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
-    hf_key = st.text_input(label = ":hugging_face: HuggingFace Key:",help="Required for Code Llama", type="password")
+    openai_api_key = st.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
+    hf_api_key = st.text_input(label = ":hugging_face: HuggingFace Key:",help="Required for Code Llama", type="password")
 
     # First we want to choose the dataset, but we will fill it with choices once we've loaded one
     dataset_container = st.empty()
@@ -63,11 +63,11 @@ if go_btn and model_count > 0:
     api_keys_entered = True
     # Check API keys are entered.
     if  "ChatGPT-4" in selected_models or "ChatGPT-3.5" in selected_models or "GPT-3" in selected_models or "GPT-3.5 Instruct" in selected_models:
-        if not openai_key.startswith('sk-'):
+        if not openai_api_key.startswith('sk-'):
             st.error("Please enter a valid OpenAI API key.")
             api_keys_entered = False
     if "Code Llama" in selected_models:
-        if not hf_key.startswith('hf_'):
+        if not hf_api_key.startswith('hf_'):
             st.error("Please enter a valid HuggingFace API key.")
             api_keys_entered = False
     if api_keys_entered:
@@ -84,7 +84,7 @@ if go_btn and model_count > 0:
                     question_to_ask = format_question(primer1, primer2, question, model_type)   
                     # Run the question
                     answer=""
-                    answer = run_request(question_to_ask, available_models[model_type], key=openai_key,alt_key=hf_key)
+                    answer = run_request(question_to_ask, available_models[model_type], key=openai_api_key,alt_key=hf_api_key)
                     # the answer is the completed Python script so add to the beginning of the script to it.
                     answer = primer2 + answer
                     print("Model: " + model_type)
@@ -92,19 +92,19 @@ if go_btn and model_count > 0:
                     plot_area = st.empty()
                     plot_area.pyplot(exec(answer))           
                 except Exception as e:
-                    if type(e) == openai.APIError:
+                    if type(e) == openai.error.APIError:
                         st.error("OpenAI API Error. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.Timeout:
+                    elif type(e) == openai.error.Timeout:
                         st.error("OpenAI API Error. Your request timed out. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.RateLimitError:
+                    elif type(e) == openai.error.RateLimitError:
                         st.error("OpenAI API Error. You have exceeded your assigned rate limit. (" + str(e) + ")")
-                    elif type(e) == openai.APIConnectionError:
+                    elif type(e) == openai.error.APIConnectionError:
                         st.error("OpenAI API Error. Error connecting to services. Please check your network/proxy/firewall settings. (" + str(e) + ")")
-                    elif type(e) == openai.InvalidRequestError:
+                    elif type(e) == openai.error.InvalidRequestError:
                         st.error("OpenAI API Error. Your request was malformed or missing required parameters. (" + str(e) + ")")
-                    elif type(e) == openai.AuthenticationError:
+                    elif type(e) == openai.error.AuthenticationError:
                         st.error("Please enter a valid OpenAI API Key. (" + str(e) + ")")
-                    elif type(e) == openai.ServiceUnavailableError:
+                    elif type(e) == openai.error.ServiceUnavailableError:
                         st.error("OpenAI Service is currently unavailable. Please try again a short time later. (" + str(e) + ")")               
                     else:
                         st.error("Unfortunately the code generated from the model contained errors and was unable to execute.")
