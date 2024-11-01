@@ -3,4 +3,3 @@ requests
 openai
 langchain
 langchain-community
-pyarrow
