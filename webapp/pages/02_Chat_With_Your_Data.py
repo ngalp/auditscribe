@@ -11,18 +11,14 @@ from classes import get_primer,format_question,run_request
 
 st.title("📊 Chat With Your Data")
 
-
-#st.markdown("<h1 style='text-align: center; font-weight:bold; font-family:comic sans ms; padding-top: 0rem;'> \
-#            Chat2VIS</h1>", unsafe_allow_html=True)
-#st.markdown("<h2 style='text-align: center;padding-top: 0rem;'>Creating Visualisations using Natural Language \
-#            with ChatGPT and Code Llama</h2>", unsafe_allow_html=True)
-
-#st.sidebar.markdown('</a> Developed by Paula Maddigan <a style="text-align: center;padding-top: 0rem;" href="mailto: i.build.apps.4.u@gmail.com">:email:', unsafe_allow_html=True)
-
-
 available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3": "text-davinci-003",
                         "GPT-3.5 Instruct": "gpt-3.5-turbo-instruct"
                         }
+label=[]
+key=[]
+for model_desc,model_name in available_models.items():
+        label.append(f"{model_desc}")
+        key.append(f"{model_name}")
 
 # List to hold datasets
 datasets = {}
@@ -57,11 +53,7 @@ with st.sidebar:
     # Check boxes for model choice
     st.write(":brain: Choose your model(s):")
     # Keep a dictionary of whether models are selected or not
-    use_model = {}
-    for model_desc,model_name in available_models.items():
-        label = f"{model_desc} ({model_name})"
-        key = f"key_{model_desc}"
-        use_model[model_desc] = st.checkbox(label,value=True,key=key)
+    use_model = st.selectbox(label="Select Model",options=label)
     st.info("Note: Upgrade of Code Llama model is causing failures in plot generation. Fix under investigation...")
  
  # Text area for query
