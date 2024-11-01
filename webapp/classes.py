@@ -12,13 +12,13 @@ def run_request(question_to_ask, model_type, key, alt_key):
         if model_type == "gpt-4":
             # Ensure GPT-4 does not include additional comments
             task = task + " The script should only include code, no comments."
-        openai.api_key = key
+        
         response = client.chat.completions.create(model=model_type,
             messages=[{"role":"system","content":task},{"role":"user","content":question_to_ask}])
         llm_response = response["choices"][0]["message"]["content"]
     elif model_type == "text-davinci-003" or model_type == "gpt-3.5-turbo-instruct":
         # Run OpenAI Completion API
-        openai.api_key = key
+        
         response = client.chat.completions.create(engine=model_type,prompt=question_to_ask,temperature=0,max_tokens=500,
                     top_p=1.0,frequency_penalty=0.0,presence_penalty=0.0,stop=["plt.show()"])
         llm_response = response["choices"][0]["text"] 
