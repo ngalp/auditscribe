@@ -16,6 +16,8 @@ def run_request(question_to_ask, model_type, key, alt_key):
         response = client.chat.completions.create(model=model_type,
             messages=[{"role":"system","content":task},{"role":"user","content":question_to_ask}])
         llm_response = response["choices"][0]["message"]["content"]
+
+    
     elif model_type == "text-davinci-003" or model_type == "gpt-3.5-turbo-instruct":
         # Run OpenAI Completion API
         

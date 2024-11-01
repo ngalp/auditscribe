@@ -3,7 +3,7 @@
 #################################################################################
 
 import pandas as pd
-import openai
+from openai import OpenAI
 import streamlit as st
 #import streamlit_nested_layout
 from classes import get_primer,format_question,run_request
@@ -56,22 +56,47 @@ with st.sidebar:
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
+if question and openai_api_key:
+    # Create an OpenAI client.
+    client = OpenAI(api_key=openai_api_key)
 
-primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
-# Create model, run the request and print the results
-question_to_ask = format_question(primer1, primer2, question, model)   
-                    # Run the question
-answer=""
-answer = run_request(question_to_ask, model, key=openai_api_key,alt_key=hf_api_key)
-# the answer is the completed Python script so add to the beginning of the script to it.
-answer = primer2 + answer
-print("Model: " + model)
-print(answer)
-plot_area = st.empty()
-plot_area.pyplot(exec(answer))           
+    data_desc = "Use a dataframe from the csv with columns '" \
+            + "','".join(str(x) for x in datasets[chosen_dataset].columns) + "'. "
+    for i in datasets[chosen_dataset].columns:
+        if len(datasets[chosen_dataset][i].drop_duplicates()) < 20 and datasets[chosen_dataset].dtypes[i]=="O":
+            data_desc = data_desc + "\nThe column '" + i + "' has categorical values '" + \
+                "','".join(str(x) for x in datasets[chosen_dataset][i].drop_duplicates()) + "'. "
+        elif datasets[chosen_dataset].dtypes[i]=="int64" or datasets[chosen_dataset].dtypes[i]=="float64":
+            data_desc = data_desc + "\nThe column '" + i + "' is type " + str(datasets[chosen_dataset].dtypes[i]) + " and contains numeric values. "   
+    data_desc = data_desc + "\nLabel the x and y axes appropriately."
+    data_desc = data_desc + "\nAdd a title. Set the fig suptitle as empty."
+    data_desc = data_desc + "{}" # Space for additional instructions if needed
+    data_desc = data_desc + "\nUsing Python version 3.12, create a script using the dataframe df to graph the following: "
+    data_viz_code = "import pandas as pd\nimport matplotlib.pyplot as plt\n"
+    data_viz_code = data_viz_code + "fig,ax = plt.subplots(1,1,figsize=(10,4))\n"
+    data_viz_code = data_viz_code + "ax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False) \n"
+    data_viz_code = data_viz_code + "df=" + datasets[chosen_dataset] + ".copy()\n"
 
-# Display the datasets in a list of tabs
-# Create the tabs
+    messages = [
+        {
+            "role": "user",
+            "content": f"{data_desc} \n\n---\n\n {data_viz_code}",
+        }
+        ]
+
+    # Generate an answer using the OpenAI API.
+    stream = client.chat.completions.create(
+        model=model,
+        messages=messages,
+        stream=True,
+        )
+
+    # Stream the response to the app using `st.write_stream`.
+    st.write_stream(stream)
+        
+
+    # Display the datasets in a list of tabs
+    # Create the tabs
 tab_list = st.tabs(datasets.keys())
 
 # Load up each tab with a dataset
