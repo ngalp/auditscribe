@@ -59,7 +59,7 @@ go_btn = st.button("Go...")
 if question and openai_api_key:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
-
+    data_string = datasets[chosen_dataset].to_csv(header=None, index=False).strip('\n').split('\n')
     data_desc = "Use a dataframe from the csv with columns '" \
             + "','".join(str(x) for x in datasets[chosen_dataset].columns) + "'. "
     for i in datasets[chosen_dataset].columns:
@@ -68,14 +68,11 @@ if question and openai_api_key:
                 "','".join(str(x) for x in datasets[chosen_dataset][i].drop_duplicates()) + "'. "
         elif datasets[chosen_dataset].dtypes[i]=="int64" or datasets[chosen_dataset].dtypes[i]=="float64":
             data_desc = data_desc + "\nThe column '" + i + "' is type " + str(datasets[chosen_dataset].dtypes[i]) + " and contains numeric values. "   
-    data_desc = data_desc + "\nLabel the x and y axes appropriately."
-    data_desc = data_desc + "\nAdd a title. Set the fig suptitle as empty."
-    data_desc = data_desc + "{}" # Space for additional instructions if needed
-
+    data_desc = data_desc + "\nThe data fields in the csv are: '"
     messages = [
         {
             "role": "user",
-            "content": f"{data_desc}",
+            "content": f"{data_desc} '\n\n\n\n' {data_string} ",
         }
         ]
 
