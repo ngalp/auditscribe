@@ -133,13 +133,8 @@ for dataset_num, tab in enumerate(tab_list):
         # Can't get the name of the tab! Can't index key list. So convert to list and index
         dataset_name = tab_list[dataset_num]
         st.subheader(dataset_name)
-        st.dataframe(datasets[dataset_name])
+        st.write(datasets[dataset_name])
 
-for dataset_num, tab in enumerate(tab_list):
-    # Can't get the name of the tab! Can't index key list. So convert to list and index
-    dataset_name = tab_list[dataset_num]
-    display(dataset_name)
-    display(datasets[dataset_name])
 
 # Insert footer to reference dataset origin  
 footer="""<style>.footer {position: fixed;left: 0;bottom: 0;width: 100%;text-align: center;}</style><div class="footer">
