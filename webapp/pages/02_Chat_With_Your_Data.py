@@ -27,8 +27,8 @@ available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3":
 if "datasets" not in st.session_state:
     datasets = {}
     # Preload datasets
-    datasets["Transport"] = pd.read_csv("Transport_Claims.csv")
-    datasets["Reimbursement"] =pd.read_csv("Employee_Reimbursement.csv")
+    datasets["Transport"] = pd.read_csv("https://github.com/ngalp/auditscribe/raw/refs/heads/main/webapp/data/Transport_Claims.csv?raw=true")
+    datasets["Reimbursement"] =pd.read_csv("https://github.com/ngalp/auditscribe/raw/refs/heads/main/webapp/data/Emmployee_Reimbursements.csv")
     st.session_state["datasets"] = datasets
 else:
     # use the list already loaded
