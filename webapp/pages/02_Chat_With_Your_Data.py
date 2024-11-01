@@ -125,15 +125,21 @@ if go_btn and model_count > 0:
 
 # Display the datasets in a list of tabs
 # Create the tabs
-tab_list = st.tabs(datasets.keys())
+tab_list = st.tabs(list(datasets.keys()))
 
 # Load up each tab with a dataset
 for dataset_num, tab in enumerate(tab_list):
     with tab:
         # Can't get the name of the tab! Can't index key list. So convert to list and index
-        dataset_name = list(datasets.keys())[dataset_num]
+        dataset_name = tab_list[dataset_num]
         st.subheader(dataset_name)
-        st.dataframe(datasets[dataset_name],hide_index=True)
+        st.dataframe(datasets[dataset_name])
+
+for dataset_num, tab in enumerate(tab_list):
+    # Can't get the name of the tab! Can't index key list. So convert to list and index
+    dataset_name = tab_list[dataset_num]
+    display(dataset_name)
+    display(datasets[dataset_name])
 
 # Insert footer to reference dataset origin  
 footer="""<style>.footer {position: fixed;left: 0;bottom: 0;width: 100%;text-align: center;}</style><div class="footer">
