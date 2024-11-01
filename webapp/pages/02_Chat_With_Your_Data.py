@@ -54,14 +54,13 @@ with st.sidebar:
     st.write(":brain: Choose your model(s):")
     # Keep a dictionary of whether models are selected or not
     use_model = st.selectbox(label="Select Model",options=label)
-    st.info("Note: Upgrade of Code Llama model is causing failures in plot generation. Fix under investigation...")
  
  # Text area for query
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
 # Make a list of the models which have been selected
-selected_models = [model_name for model_name, choose_model in use_model.items() if choose_model]
+selected_models = [model_name for model_name, choose_model in use_model if choose_model]
 model_count = len(selected_models)
 
 # Execute chatbot query
