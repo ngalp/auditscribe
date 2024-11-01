@@ -11,9 +11,7 @@ import warnings
 
 st.title("📊 Chat With Your Data")
 
-available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3": "text-davinci-003",
-                        "GPT-3.5 Instruct": "gpt-3.5-turbo-instruct"
-                        }
+MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
 # List to hold datasets
 datasets = {}
@@ -22,9 +20,7 @@ datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/
 
 
 with st.sidebar:
-
-    openai_api_key = st.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
-    hf_api_key = st.text_input(label = ":hugging_face: HuggingFace Key:",help="Required for Code Llama", type="password")
+    openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="file_qa_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
 
     # First we want to choose the dataset, but we will fill it with choices once we've loaded one
     dataset_container = st.empty()
@@ -48,66 +44,48 @@ with st.sidebar:
     # Check boxes for model choice
     st.write(":brain: Choose your model(s):")
     # Keep a dictionary of whether models are selected or not
-    use_model = st.selectbox(label="Select Model",options=list(available_models.keys()))
+    model: str = st.selectbox("Model", options=MODEL_LIST)  
 
  # Text area for query
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
-# Make a list of the models which have been selected
-selected_models = list(available_models.values())[list(available_models.keys()).index(use_model)]
-model_count = len(selected_models)
+if not openai_api_key:
+    st.warning(
+        "Enter your OpenAI API key in the sidebar. You can get a key at"
+        " https://platform.openai.com/account/api-keys."
+    )
 
-# Execute chatbot query
-if go_btn and model_count > 0:
-    api_keys_entered = True
-    # Check API keys are entered.
-    if  "ChatGPT-4" in selected_models or "ChatGPT-3.5" in selected_models or "GPT-3" in selected_models or "GPT-3.5 Instruct" in selected_models:
-        if not openai_api_key.startswith('sk-'):
-            st.error("Please enter a valid OpenAI API key.")
-            api_keys_entered = False
-    if "Code Llama" in selected_models:
-        if not hf_api_key.startswith('hf_'):
-            st.error("Please enter a valid HuggingFace API key.")
-            api_keys_entered = False
-    if api_keys_entered:
-        # Place for plots depending on how many models
-        plots = st.columns(model_count)
-        # Get the primer for this dataset
-        primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
-        # Create model, run the request and print the results
-        for plot_num, model_type in enumerate(selected_models):
-            with plots[plot_num]:
-                st.subheader(model_type)
-                try:
-                    # Format the question 
-                    question_to_ask = format_question(primer1, primer2, question, model_type)   
-                    # Run the question
-                    answer=""
-                    answer = run_request(question_to_ask, available_models[model_type], key=openai_api_key,alt_key=hf_api_key)
-                    # the answer is the completed Python script so add to the beginning of the script to it.
-                    answer = primer2 + answer
-                    print("Model: " + model_type)
-                    print(answer)
-                    plot_area = st.empty()
-                    plot_area.pyplot(exec(answer))           
-                except Exception as e:
-                    if type(e) == openai.error.APIError:
-                        st.error("OpenAI API Error. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.error.Timeout:
-                        st.error("OpenAI API Error. Your request timed out. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.error.RateLimitError:
-                        st.error("OpenAI API Error. You have exceeded your assigned rate limit. (" + str(e) + ")")
-                    elif type(e) == openai.error.APIConnectionError:
-                        st.error("OpenAI API Error. Error connecting to services. Please check your network/proxy/firewall settings. (" + str(e) + ")")
-                    elif type(e) == openai.error.InvalidRequestError:
-                        st.error("OpenAI API Error. Your request was malformed or missing required parameters. (" + str(e) + ")")
-                    elif type(e) == openai.error.AuthenticationError:
-                        st.error("Please enter a valid OpenAI API Key. (" + str(e) + ")")
-                    elif type(e) == openai.error.ServiceUnavailableError:
-                        st.error("OpenAI Service is currently unavailable. Please try again a short time later. (" + str(e) + ")")               
-                    else:
-                        st.error("Unfortunately the code generated from the model contained errors and was unable to execute.")
+try
+    primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
+    # Create model, run the request and print the results
+    question_to_ask = format_question(primer1, primer2, question, model)   
+                        # Run the question
+    answer=""
+    answer = run_request(question_to_ask, model, key=openai_api_key,alt_key=hf_api_key)
+    # the answer is the completed Python script so add to the beginning of the script to it.
+    answer = primer2 + answer
+    print("Model: " + model)
+    print(answer)
+    plot_area = st.empty()
+    plot_area.pyplot(exec(answer))           
+except Exception as e:
+    if type(e) == openai.error.APIError:
+        st.error("OpenAI API Error. Please try again a short time later. (" + str(e) + ")")
+    elif type(e) == openai.error.Timeout:
+        st.error("OpenAI API Error. Your request timed out. Please try again a short time later. (" + str(e) + ")")
+    elif type(e) == openai.error.RateLimitError:
+        st.error("OpenAI API Error. You have exceeded your assigned rate limit. (" + str(e) + ")")
+    elif type(e) == openai.error.APIConnectionError:
+        st.error("OpenAI API Error. Error connecting to services. Please check your network/proxy/firewall settings. (" + str(e) + ")")
+    elif type(e) == openai.error.InvalidRequestError:
+        st.error("OpenAI API Error. Your request was malformed or missing required parameters. (" + str(e) + ")")
+    elif type(e) == openai.error.AuthenticationError:
+        st.error("Please enter a valid OpenAI API Key. (" + str(e) + ")")
+    elif type(e) == openai.error.ServiceUnavailableError:
+        st.error("OpenAI Service is currently unavailable. Please try again a short time later. (" + str(e) + ")")               
+    else:
+        st.error("Unfortunately the code generated from the model contained errors and was unable to execute.")
 
 # Display the datasets in a list of tabs
 # Create the tabs
