@@ -92,19 +92,19 @@ if go_btn and model_count > 0:
                     plot_area = st.empty()
                     plot_area.pyplot(exec(answer))           
                 except Exception as e:
-                    if type(e) == openai.error.APIError:
+                    if type(e) == openai.APIError:
                         st.error("OpenAI API Error. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.error.Timeout:
+                    elif type(e) == openai.Timeout:
                         st.error("OpenAI API Error. Your request timed out. Please try again a short time later. (" + str(e) + ")")
-                    elif type(e) == openai.error.RateLimitError:
+                    elif type(e) == openai.RateLimitError:
                         st.error("OpenAI API Error. You have exceeded your assigned rate limit. (" + str(e) + ")")
-                    elif type(e) == openai.error.APIConnectionError:
+                    elif type(e) == openai.APIConnectionError:
                         st.error("OpenAI API Error. Error connecting to services. Please check your network/proxy/firewall settings. (" + str(e) + ")")
-                    elif type(e) == openai.error.InvalidRequestError:
+                    elif type(e) == openai.InvalidRequestError:
                         st.error("OpenAI API Error. Your request was malformed or missing required parameters. (" + str(e) + ")")
-                    elif type(e) == openai.error.AuthenticationError:
+                    elif type(e) == openai.AuthenticationError:
                         st.error("Please enter a valid OpenAI API Key. (" + str(e) + ")")
-                    elif type(e) == openai.error.ServiceUnavailableError:
+                    elif type(e) == openai.ServiceUnavailableError:
                         st.error("OpenAI Service is currently unavailable. Please try again a short time later. (" + str(e) + ")")               
                     else:
                         st.error("Unfortunately the code generated from the model contained errors and was unable to execute.")
