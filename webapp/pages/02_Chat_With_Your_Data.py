@@ -57,37 +57,18 @@ question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
 
-
-try:
-    primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
-    # Create model, run the request and print the results
-    question_to_ask = format_question(primer1, primer2, question, model)   
-                        # Run the question
-    answer=""
-    answer = run_request(question_to_ask, model, key=openai_api_key,alt_key=hf_api_key)
-    # the answer is the completed Python script so add to the beginning of the script to it.
-    answer = primer2 + answer
-    print("Model: " + model)
-    print(answer)
-    plot_area = st.empty()
-    plot_area.pyplot(exec(answer))           
-except Exception as e:
-    if type(e) == openai.error.APIError:
-        st.error("OpenAI API Error. Please try again a short time later. (" + str(e) + ")")
-    elif type(e) == openai.error.Timeout:
-        st.error("OpenAI API Error. Your request timed out. Please try again a short time later. (" + str(e) + ")")
-    elif type(e) == openai.error.RateLimitError:
-        st.error("OpenAI API Error. You have exceeded your assigned rate limit. (" + str(e) + ")")
-    elif type(e) == openai.error.APIConnectionError:
-        st.error("OpenAI API Error. Error connecting to services. Please check your network/proxy/firewall settings. (" + str(e) + ")")
-    elif type(e) == openai.error.InvalidRequestError:
-        st.error("OpenAI API Error. Your request was malformed or missing required parameters. (" + str(e) + ")")
-    elif type(e) == openai.error.AuthenticationError:
-        st.error("Please enter a valid OpenAI API Key. (" + str(e) + ")")
-    elif type(e) == openai.error.ServiceUnavailableError:
-        st.error("OpenAI Service is currently unavailable. Please try again a short time later. (" + str(e) + ")")               
-    else:
-        st.error("Unfortunately the code generated from the model contained errors and was unable to execute.")
+primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
+# Create model, run the request and print the results
+question_to_ask = format_question(primer1, primer2, question, model)   
+                    # Run the question
+answer=""
+answer = run_request(question_to_ask, model, key=openai_api_key,alt_key=hf_api_key)
+# the answer is the completed Python script so add to the beginning of the script to it.
+answer = primer2 + answer
+print("Model: " + model)
+print(answer)
+plot_area = st.empty()
+plot_area.pyplot(exec(answer))           
 
 # Display the datasets in a list of tabs
 # Create the tabs
