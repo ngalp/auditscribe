@@ -20,8 +20,14 @@ datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/
 
 
 with st.sidebar:
-    openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="file_qa_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
+    openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="openai_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
+    hf_api_key = st.text_input(label = ":hugging_face: HuggingFace API Key:",key="hf_api_key",help="HF API Key required for Code Llama. Key will not be stored.", type="password",placeholder="Paste your HF API key here")
 
+    if not openai_api_key:
+        st.warning(
+            "Enter your OpenAI API key in the sidebar. You can get a key at"
+            " https://platform.openai.com/account/api-keys."
+        )
     # First we want to choose the dataset, but we will fill it with choices once we've loaded one
     dataset_container = st.empty()
 
@@ -50,11 +56,7 @@ with st.sidebar:
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
-if not openai_api_key:
-    st.warning(
-        "Enter your OpenAI API key in the sidebar. You can get a key at"
-        " https://platform.openai.com/account/api-keys."
-    )
+
 
 try:
     primer1,primer2 = get_primer(datasets[chosen_dataset],'datasets["'+ chosen_dataset + '"]') 
