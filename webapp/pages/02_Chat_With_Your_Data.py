@@ -14,11 +14,6 @@ st.title("📊 Chat With Your Data")
 available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3": "text-davinci-003",
                         "GPT-3.5 Instruct": "gpt-3.5-turbo-instruct"
                         }
-label=[]
-key=[]
-for model_desc,model_name in available_models.items():
-        label.append(f"{model_desc}")
-        key.append(f"{model_name}")
 
 # List to hold datasets
 datasets = {}
@@ -53,14 +48,14 @@ with st.sidebar:
     # Check boxes for model choice
     st.write(":brain: Choose your model(s):")
     # Keep a dictionary of whether models are selected or not
-    use_model = st.selectbox(label="Select Model",options=label)
+    use_model = st.selectbox(label="Select Model",options=list(available_models.keys()))
  
  # Text area for query
 question = st.text_area(":eyes: What would you like to visualise?",height=10)
 go_btn = st.button("Go...")
 
 # Make a list of the models which have been selected
-selected_models = [model_name for model_name, choose_model in use_model if choose_model]
+selected_models = list(available_models.values())[list(available_models.keys()).index(use_model)]
 model_count = len(selected_models)
 
 # Execute chatbot query
