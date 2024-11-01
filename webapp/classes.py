@@ -1,4 +1,4 @@
-import openai
+from openai import OpenAI
 from langchain_community.llms import HuggingFaceHub
 from langchain.chains import LLMChain
 from langchain_core.prompts import PromptTemplate
