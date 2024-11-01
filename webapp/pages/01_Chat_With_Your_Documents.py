@@ -1,7 +1,11 @@
+####################
+# the first section is adapted from https://github.com/mmz-001/knowledge_gpt/blob/main/knowledge_gpt/main.py
+####################
+
 import streamlit as st
 from openai import OpenAI
 
-# the first section is adapted from https://github.com/mmz-001/knowledge_gpt/blob/main/knowledge_gpt/main.py
+st.title("📝 Chat With Your Documents")
 
 EMBEDDING = "openai"
 VECTOR_STORE = "faiss"
@@ -17,14 +21,14 @@ with st.sidebar:
             " https://platform.openai.com/account/api-keys."
         )
 
-st.title("📝 Chat With Your Documents")
+    model: str = st.selectbox("Model", options=MODEL_LIST)  
+
+    with st.expander("Advanced Options"):
+        return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
+        show_full_doc = st.checkbox("Show parsed contents of the document")
+        
+
 uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
-
-model: str = st.selectbox("Model", options=MODEL_LIST)  
-
-with st.expander("Advanced Options"):
-    return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
-    show_full_doc = st.checkbox("Show parsed contents of the document")
 
 question = st.text_input(
     "Ask something about the article",
