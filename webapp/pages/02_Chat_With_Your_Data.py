@@ -71,16 +71,11 @@ if question and openai_api_key:
     data_desc = data_desc + "\nLabel the x and y axes appropriately."
     data_desc = data_desc + "\nAdd a title. Set the fig suptitle as empty."
     data_desc = data_desc + "{}" # Space for additional instructions if needed
-    data_desc = data_desc + "\nUsing Python version 3.12, create a script using the dataframe df to graph the following: "
-    data_viz_code = "import pandas as pd\nimport matplotlib.pyplot as plt\n"
-    data_viz_code = data_viz_code + "fig,ax = plt.subplots(1,1,figsize=(10,4))\n"
-    data_viz_code = data_viz_code + "ax.spines['top'].set_visible(False)\nax.spines['right'].set_visible(False) \n"
-    data_viz_code = data_viz_code + "df=" + datasets[chosen_dataset] + ".copy()\n"
 
     messages = [
         {
             "role": "user",
-            "content": f"{data_desc} \n\n---\n\n {data_viz_code}",
+            "content": f"{data_desc}",
         }
         ]
 
