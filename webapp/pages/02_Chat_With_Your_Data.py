@@ -25,16 +25,9 @@ available_models = {"ChatGPT-4": "gpt-4","ChatGPT-3.5": "gpt-3.5-turbo","GPT-3":
                         }
 
 # List to hold datasets
-if "datasets" not in st.session_state:
-    datasets = {}
-    # Preload datasets
-    datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
-    datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
-    st.session_state["datasets"] = datasets
-    display(datasets["Reimbursement"] .sample())
-else:
-    # use the list already loaded
-    datasets = st.session_state["datasets"]
+datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
+datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
+
 
 key_col1,key_col2 = st.columns(2)
 openai_key = key_col1.text_input(label = ":key: OpenAI Key:", help="Required for ChatGPT-4, ChatGPT-3.5, GPT-3, GPT-3.5 Instruct.",type="password")
@@ -143,8 +136,8 @@ for dataset_num, tab in enumerate(tab_list):
 
 # Insert footer to reference dataset origin  
 footer="""<style>.footer {position: fixed;left: 0;bottom: 0;width: 100%;text-align: center;}</style><div class="footer">
-<p> <a style='display: block; text-align: center;'> Datasets courtesy of NL4DV, nvBench and ADVISor </a></p></div>"""
-st.caption("Datasets courtesy of NL4DV, nvBench and ADVISor")
+<p> <a style='display: block; text-align: center;'> Synthetic Datasets </a></p></div>"""
+st.caption("Synthetic Datasets")
 
 # Hide menu and footer
 hide_streamlit_style = """
