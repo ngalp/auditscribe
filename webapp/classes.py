@@ -1,5 +1,7 @@
 import openai
-from langchain import HuggingFaceHub, LLMChain,PromptTemplate
+from langchain_community.llms import HuggingFaceHub
+from langchain.chains import LLMChain
+from langchain_core.prompts import PromptTemplate
 
 def run_request(question_to_ask, model_type, key, alt_key):
     if model_type == "gpt-4" or model_type == "gpt-3.5-turbo" :
