@@ -72,7 +72,7 @@ if question and openai_api_key:
     df = datasets[chosen_dataset]
 
     dataqa_prompt = "Given the dataframe, answer the following question:"
-    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df, generate scripts with Python version 3.12 to visualize the result with graphs. Assume that the libraries has been imported and df has alread been loaded."
+    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df, generate scripts with Python version 3.12 to visualize the result with graphs. Assume that the libraries has been imported and df has alread been loaded, do not create new variables."
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
