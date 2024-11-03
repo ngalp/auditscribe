@@ -5,7 +5,7 @@
 import pandas as pd
 from openai import OpenAI
 import streamlit as st
-#import streamlit_nested_layout
+import matplotlib.pyplot 
 from classes import get_primer,format_question,run_request
 import warnings
 
@@ -72,7 +72,7 @@ if question and openai_api_key:
     df = datasets[chosen_dataset]
 
     dataqa_prompt = "Given the dataframe, answer the following question:"
-    visualcode_prompt = "Import the necessary libraries and load the dataframe df from variable datasets[chosen_dataset]. Generate scripts with Python version 3.12 to visualize the result with graphs."
+    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df. Generate scripts with Python version 3.12 to visualize the result with graphs. Assume that the libraries has been imported and df has alread been loaded."
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
