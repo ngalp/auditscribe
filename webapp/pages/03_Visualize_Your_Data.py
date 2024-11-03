@@ -94,7 +94,9 @@ if question and openai_api_key:
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
 
-    st.plotly_chart(exec(stream))       
+    exec(stream)
+
+    st.plotly_chart(plot_chart)       
 
     # Display the datasets in a list of tabs
     # Create the tabs
