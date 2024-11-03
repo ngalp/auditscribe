@@ -88,7 +88,7 @@ if question and openai_api_key:
     stream = client.chat.completions.create(
         model=model,
         messages=messages,
-        stream=False,
+        stop=["plt.show()"
         )
 
     # Stream the response to the app using `st.write_stream`.
