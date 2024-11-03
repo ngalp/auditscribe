@@ -88,15 +88,14 @@ if question and openai_api_key:
     stream = client.chat.completions.create(
         model=model,
         messages=messages,
-        stream=True,
+        stream=False,
         )
 
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
 
-    exec(stream)
-
-    st.plotly_chart(plot_chart)       
+    plot_chart = st.empty()
+    plot_chart.pyplot(exec(str(stream)))         
 
     # Display the datasets in a list of tabs
     # Create the tabs
