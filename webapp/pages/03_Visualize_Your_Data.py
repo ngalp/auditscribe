@@ -80,7 +80,7 @@ if question and openai_api_key:
     messages = [
         {
             "role": "user",
-            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question} \n\n---\n\n {visualcode_prompt} \n\n---\n\n {visual_requirements} \n\n---\n\n {data_desc} \n\n---\n\n {data_string}  ",
+            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question} \n\n---\n\n {visualcode_prompt} \n\n---\n\n {visual_requirements} \n\n---\n\n {data_desc}  ",
         }
         ]
 
