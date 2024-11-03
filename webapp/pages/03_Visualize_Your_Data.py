@@ -5,7 +5,7 @@
 import pandas as pd
 from openai import OpenAI
 import streamlit as st
-from matplotlib import pyplot 
+from matplotlib import pyplot as plt
 from classes import get_primer,format_question,run_request
 import warnings
 
@@ -94,8 +94,8 @@ if question and openai_api_key:
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
 
-    #plot_area = st.empty()
-    #plot_area.pyplot(exec(stream))         
+    plot_area = st.empty()
+    plot_area.pyplot(exec(stream))         
 
     # Display the datasets in a list of tabs
     # Create the tabs
