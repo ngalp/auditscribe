@@ -95,7 +95,7 @@ if question and openai_api_key:
     st.write_stream(stream)
 
     plot_area = st.empty()
-    plot_area.pyplot(exec(stream))         
+    plot_area.pyplot(exec(str(stream)))         
 
     # Display the datasets in a list of tabs
     # Create the tabs
