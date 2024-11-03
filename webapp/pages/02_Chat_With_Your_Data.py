@@ -57,7 +57,7 @@ question = st.text_area(":eyes: What would you like to know?",height=10)
 go_btn = st.button("Go...")
 
 if question and openai_api_key:
-    # Create an OpenAI client.
+    # Create an OpenAI client
     client = OpenAI(api_key=openai_api_key)
     data_string = datasets[chosen_dataset].to_csv(header=None, index=False).strip('\n').split('\n')
     data_desc = "The dataframe has columns '" \
