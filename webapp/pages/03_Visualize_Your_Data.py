@@ -69,11 +69,18 @@ if question and openai_api_key:
         elif datasets[chosen_dataset].dtypes[i]=="int64" or datasets[chosen_dataset].dtypes[i]=="float64":
             data_desc = data_desc + "\nThe column '" + i + "' is type " + str(datasets[chosen_dataset].dtypes[i]) + " and contains numeric values. "   
  
+    df = datasets[chosen_dataset]
+
     dataqa_prompt = "Given the dataframe, answer the following question:"
+    visualcode_prompt = "Import the necessary libraries and load the dataframe df from variable datasets[chosen_dataset]. Generate scripts with Python version 3.12 to visualize the result with graphs."
+ 
+    visual_requirements = "\nLabel the axes appropriately."
+    visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
+    
     messages = [
         {
             "role": "user",
-            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question}  \n\n---\n\n {data_desc} \n\n---\n\n {data_string}  ",
+            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question} \n\n---\n\n {visualcode_prompt} \n\n---\n\n {visual_requirements} \n\n---\n\n {data_desc} \n\n---\n\n {data_string}  ",
         }
         ]
 
