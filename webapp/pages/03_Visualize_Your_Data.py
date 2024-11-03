@@ -95,8 +95,10 @@ if question and openai_api_key:
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
 
+    stream_str = str(stream)
+
     plot_chart = st.empty()
-    plot_chart.pyplot(exec(str(stream)))         
+    plot_chart.pyplot(exec(stream_str))         
 
     # Display the datasets in a list of tabs
     # Create the tabs
