@@ -5,7 +5,7 @@
 import pandas as pd
 from openai import OpenAI
 import streamlit as st
-import pyplot from matplotlib
+from matplotlib import pyplot 
 from classes import get_primer,format_question,run_request
 import warnings
 
