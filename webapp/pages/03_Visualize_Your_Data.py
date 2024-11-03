@@ -97,8 +97,9 @@ if question and openai_api_key:
 
     stream_str = str(stream)
 
-    plot_chart = st.empty()
-    plot_chart.pyplot(exec(stream_str))         
+    exec(stream_str)
+
+    st.plotly_chart(plot_chart)      
 
     # Display the datasets in a list of tabs
     # Create the tabs
