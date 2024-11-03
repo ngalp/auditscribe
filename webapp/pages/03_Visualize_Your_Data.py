@@ -72,7 +72,7 @@ if question and openai_api_key:
     df = datasets[chosen_dataset]
 
     dataqa_prompt = "Given the dataframe, answer the following question:"
-    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df. Generate scripts with Python version 3.12 to visualize the result with graphs. Assume that the libraries has been imported and df has alread been loaded."
+    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df, generate scripts with Python version 3.12 to visualize the result with graphs. Assume that the libraries has been imported and df has alread been loaded."
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
@@ -93,7 +93,9 @@ if question and openai_api_key:
 
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
-        
+
+    plot_area = st.empty()
+    plot_area.pyplot(exec(stream))         
 
     # Display the datasets in a list of tabs
     # Create the tabs
