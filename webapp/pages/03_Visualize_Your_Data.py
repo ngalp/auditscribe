@@ -99,14 +99,14 @@ if question and openai_api_key:
     response = stream.choices[0].message.content
 
     st.write(response)
-    
-    if response.str[:3]=="```":
-        if response.str[:9]=="```":
+
+    if response[:3]=="```":
+        if response[:9]=="```":
             response=response[9:]
         else:
             response=response[3:]
     
-    if response.str[-3:]=="```":
+    if response[-3:]=="```":
         response=response[:-3]
     st.write(response)
     exec(response, globals={"__builtins__": {}})
