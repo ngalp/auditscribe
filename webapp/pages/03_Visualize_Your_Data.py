@@ -102,7 +102,7 @@ if question and openai_api_key:
 
     exec(response)
 
-    st.plotly_chart(plot_chart.gcf())      
+    st.plotly_chart(plt.gcf())      
 
     # Display the datasets in a list of tabs
     # Create the tabs
