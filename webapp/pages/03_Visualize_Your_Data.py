@@ -109,7 +109,7 @@ if question and openai_api_key:
     if response[-3:]=="```":
         response=response[:-3]
     st.write(response)
-    exec(response,{"__builtins__": {}})
+    exec(response)
  
     st.pyplot(plt)  
 
