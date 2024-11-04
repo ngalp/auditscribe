@@ -98,9 +98,9 @@ if question and openai_api_key:
 
     response = stream.choices[0].message.content
 
-    st.text(response)
+    exec(response)
 
-    st.pyplot(exec(response))  
+    st.pyplot(plt)  
 
 
     # Display the datasets in a list of tabs
