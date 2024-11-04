@@ -98,7 +98,7 @@ if question and openai_api_key:
     response = ""
     for chunk in stream:
         if chunk.choices[0].delta.content is not None:
-        response = response + chunk.choices[0].delta.content
+            response = response + chunk.choices[0].delta.content
 
     exec(response)
 
