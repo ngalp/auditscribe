@@ -102,7 +102,7 @@ if question and openai_api_key:
 
     exec(response)
 
-    st.pyplot(plt)  
+    st.pyplot(plt.figure)  
 
 
     # Display the datasets in a list of tabs
