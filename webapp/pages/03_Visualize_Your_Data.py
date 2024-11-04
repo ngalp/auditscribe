@@ -100,9 +100,16 @@ if question and openai_api_key:
     for chunk in stream:
         if chunk.choices[0].delta.content is not None:
             response = response + chunk.choices[0].delta.content
+    st.write(response)
+    top_10_claimants = df.groupby('Name')['Value'].sum().nlargest(10)
+    fig, ax = plt.subplots()
+    top_10_claimants.plot(kind='bar', ax=ax, color='skyblue')
 
-    plot_area = st.empty()
-    plot_area.pyplot(exec(response))  
+    ax.set_xlabel('Claimants')
+    ax.set_ylabel('Total Value')
+    ax.set_title('Top 10 Claimants by Value')
+    fig.suptitle('')
+    st.pyplot(fig)  
 
 
     # Display the datasets in a list of tabs
