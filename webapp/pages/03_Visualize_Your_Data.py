@@ -104,7 +104,7 @@ if question and openai_api_key:
         else:
             response=response[3:]
     
-    if response.str[-3:]=="```"
+    if response.str[-3:]=="```"z:
         response=response[:-3]
     st.write(response)
     exec(response, globals={"__builtins__": {}})
