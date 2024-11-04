@@ -98,8 +98,6 @@ if question and openai_api_key:
 
     response = stream.choices[0].message.content
 
-    st.write(response)
-
     if response[:3]=="```":
         if response[:9]=="```python":
             response=response[9:]
@@ -108,7 +106,7 @@ if question and openai_api_key:
     
     if response[-3:]=="```":
         response=response[:-3]
-    st.write(response)
+    
     exec(response)
  
     st.pyplot(plt)  
