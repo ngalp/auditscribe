@@ -90,28 +90,17 @@ if question and openai_api_key:
         model=model,
         messages=messages,
         stop=["plt.show()"],
-        stream = True
+        #stream = True
         )
 
     # Stream the response to the app using `st.write_stream`.
-    st.write_stream(stream)
+    st.write(completion.choices[0].message)
 
-    response = ""
-    for chunk in stream:
-        if chunk.choices[0].delta.content is not None:
-            response = response + chunk.choices[0].delta.content
+    response = completion.choices[0].message
 
     st.text(response)
-    
-    top_10_claimants = df.groupby('Name')['Value'].sum().nlargest(10)
-    fig, ax = plt.subplots()
-    top_10_claimants.plot(kind='bar', ax=ax, color='skyblue')
 
-    ax.set_xlabel('Claimants')
-    ax.set_ylabel('Total Value')
-    ax.set_title('Top 10 Claimants by Value')
-    fig.suptitle('')
-    st.pyplot(fig)  
+    st.pyplot(exec(response))  
 
 
     # Display the datasets in a list of tabs
