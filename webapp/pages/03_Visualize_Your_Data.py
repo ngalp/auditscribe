@@ -17,7 +17,6 @@ datasets = {}
 datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
 datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
 
-
 with st.sidebar:
     openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="openai_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
     hf_api_key = st.text_input(label = ":hugging_face: HuggingFace API Key:",key="hf_api_key",help="HF API Key required for Code Llama. Key will not be stored.", type="password",placeholder="Paste your HF API key here")
@@ -71,7 +70,9 @@ if question and openai_api_key:
     df = datasets[chosen_dataset]
 
     dataqa_prompt = "Given the dataframe, answer the following question:"
-    visualcode_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df, generate scripts with Python version 3.12 to visualize the result with graph. store graph to variable plot_chart. Assume that the libraries has been imported and df has alread been loaded."
+    code_generation_prompt = "Using only python libraries pandas and matplotlib, and the loaded dataframe df, generate scripts with Python version 3.12. "
+
+    visualcode_prompt = "Visualize the result with graph. Assume that the libraries has been imported and df has alread been loaded."
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
