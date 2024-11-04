@@ -6,3 +6,4 @@ langchain-community
 pandas
 numpy
 matplotlib
+plotly

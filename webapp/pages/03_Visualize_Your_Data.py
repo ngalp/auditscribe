@@ -6,8 +6,7 @@ import pandas as pd
 from openai import OpenAI
 import streamlit as st
 from matplotlib import pyplot as plt
-from classes import get_primer,format_question,run_request
-import warnings
+import plotly
 
 st.title("📊 Chat With Your Data")
 
