@@ -101,7 +101,8 @@ if question and openai_api_key:
         if chunk.choices[0].delta.content is not None:
             response = response + chunk.choices[0].delta.content
 
-    st.pyplot(exec(response))  
+    plot_area = st.empty()
+    plot_area.pyplot(exec(response))  
 
 
     # Display the datasets in a list of tabs
