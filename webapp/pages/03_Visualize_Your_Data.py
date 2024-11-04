@@ -94,9 +94,9 @@ if question and openai_api_key:
         )
 
     # Stream the response to the app using `st.write_stream`.
-    st.write(stream.choices[0].message)
+    st.write(stream.choices[0].message.content)
 
-    response = stream.choices[0].message
+    response = stream.choices[0].message.content
 
     st.text(response)
 
