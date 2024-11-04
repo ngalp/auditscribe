@@ -97,7 +97,9 @@ if question and openai_api_key:
     st.write(stream.choices[0].message.content)
 
     response = stream.choices[0].message.content
+
     st.write(response)
+    
     if response.str[:3]=="```":
         if response.str[:9]=="```":
             response=response[9:]
