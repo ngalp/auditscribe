@@ -76,6 +76,7 @@ if question and openai_api_key:
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
+    visual_requirements = visual_requirements + "\nInclude code fig, ax = plt.subplots()"
     
     messages = [
         {
@@ -102,7 +103,7 @@ if question and openai_api_key:
 
     exec(response)
 
-    st.pyplot(plt.figure)  
+    st.pyplot(fig)  
 
 
     # Display the datasets in a list of tabs
