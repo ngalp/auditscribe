@@ -100,7 +100,9 @@ if question and openai_api_key:
     for chunk in stream:
         if chunk.choices[0].delta.content is not None:
             response = response + chunk.choices[0].delta.content
-    st.write(response)
+
+    st.text(response)
+    
     top_10_claimants = df.groupby('Name')['Value'].sum().nlargest(10)
     fig, ax = plt.subplots()
     top_10_claimants.plot(kind='bar', ax=ax, color='skyblue')
