@@ -98,6 +98,7 @@ if question and openai_api_key:
 
     response = stream.choices[0].message.content
 
+    st.write(response)
     exec(response)
 
     st.pyplot(plt)  
