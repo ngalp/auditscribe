@@ -95,9 +95,12 @@ if question and openai_api_key:
     # Stream the response to the app using `st.write_stream`.
     st.write_stream(stream)
 
-    stream_str = str(stream)
+    response = ""
+    for chunk in stream:
+        if chunk.choices[0].delta.content is not None:
+        response = response + chunk.choices[0].delta.content
 
-    exec(stream_str)
+    exec(response)
 
     st.plotly_chart(plot_chart.gcf())      
 
