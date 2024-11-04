@@ -102,8 +102,8 @@ if question and openai_api_key:
 
     exec(response)
 
-    plot_area = st.empty()
-    plot_area.pyplot(plt)    
+    st.pyplot(plt)  
+
 
     # Display the datasets in a list of tabs
     # Create the tabs
