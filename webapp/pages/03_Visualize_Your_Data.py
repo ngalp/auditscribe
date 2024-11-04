@@ -101,7 +101,7 @@ if question and openai_api_key:
     st.write(response)
 
     if response[:3]=="```":
-        if response[:9]=="```":
+        if response[:9]=="```python":
             response=response[9:]
         else:
             response=response[3:]
