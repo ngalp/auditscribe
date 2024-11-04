@@ -76,7 +76,7 @@ if question and openai_api_key:
  
     visual_requirements = "\nLabel the axes appropriately."
     visual_requirements = visual_requirements + "\nAdd a title. Set the fig suptitle as empty."
-    visual_requirements = visual_requirements + "\nInclude code fig, ax = plt.subplots()"
+    visual_requirements = visual_requirements + "\nInitiate variable fig for the chart object. Include code fig, ax = plt.subplots()"
     
     messages = [
         {
