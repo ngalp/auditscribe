@@ -5,6 +5,8 @@
 import streamlit as st
 from openai import OpenAI
 from utility import check_password
+import requests
+
 
 st.title("📝 Chat With Your Documents")
 
@@ -12,9 +14,11 @@ EMBEDDING = "openai"
 VECTOR_STORE = "faiss"
 MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
+response = 
+data = response.text
 # List to hold datasets
 datasets = {}
-datasets["Transport_Policy"] =  open('https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/documents/Transport_Policy.txt','r')
+datasets["Transport_Policy"] =  requests.get('https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/documents/Transport_Policy.txt').text
 
 with st.sidebar:
     if not check_password():  
