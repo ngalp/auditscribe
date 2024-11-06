@@ -54,9 +54,7 @@ with st.sidebar:
     # Radio buttons for documents choice
     chosen_documents = documents_container.radio(":memo: Choose your data:",documents.keys(),index=index_no)#,horizontal=True,)
 
-
     dataset_container = st.empty()
-
     # Add facility to upload a dataset
     try:
         uploaded_file = st.file_uploader(":computer: Load a CSV file:", type="csv")
