@@ -11,47 +11,48 @@ st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
 multi='''## Methodology: Using Large Language Models (LLMs) to "Chat" with Documents and Data
 
-(Start)
-    |
-    v
-(Enter Password)
-    |
-    v
-[Is password correct?] -- No --> (Display Error & Retry) --> (Enter Password)
-    |
-   Yes
-    v
-(Enter OpenAI API Key)
-    |
-    v
-[Is API key valid?] -- No --> (Display Error & Retry) --> (Enter OpenAI API Key)
-    |
-   Yes
-    v
-(Select/Attach Document)
-    |
-    v
-[Is document selected?] 
-    |
-   Yes
-    v
-(Select/Attach Data)
-    |
-    v
-[Is data selected?] 
-    |
-   Yes
-    v
-(Key in Question)
-    |
-    v
-(Wait for Response)
-    |
-    v
-(Display Response)
-    |
-    v
-(End)
+(Start)  
+    |  
+    v  
+(Enter Password)  
+    |  
+    v  
+[Is password correct?] -- No --> (Display Error & Retry) --> (Enter Password)  
+    |  
+   Yes  
+    v  
+(Enter OpenAI API Key)  
+    |  
+    v  
+[Is API key valid?] -- No --> (Display Error & Retry) --> (Enter OpenAI API Key)  
+    |  
+   Yes  
+    v  
+(Select/Attach Document)  
+    |  
+    v  
+[Is document selected?]   
+    |  
+   Yes  
+    v  
+(Select/Attach Data)  
+    |  
+    v  
+[Is data selected?]   
+    |  
+   Yes  
+    v  
+(Key in Question)  
+    |  
+    v  
+(Wait for Response)  
+    |  
+    v  
+(Display Response)  
+    |  
+    v  
+(End)  
+
 
 ### Introduction
 
