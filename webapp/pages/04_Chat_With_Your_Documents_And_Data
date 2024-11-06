@@ -8,7 +8,7 @@ import streamlit as st
 import warnings
 from utility import check_password
 
-st.title("📊 Chat With Your Data")
+st.title("📊 Chat With Your Documents and Data")
 
 MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
