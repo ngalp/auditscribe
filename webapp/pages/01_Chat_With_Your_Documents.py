@@ -52,11 +52,6 @@ with st.sidebar:
     # Radio buttons for documents choice
     chosen_documents = documents_container.radio(":memo: Choose your data:",documents.keys(),index=index_no)#,horizontal=True,)
 
-    with st.expander("Advanced Options"):
-        #return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
-        show_full_doc = st.checkbox("Show parsed contents of the document")
-
-
     
 question = st.text_input(
     ":eyes: What would you like to know?",

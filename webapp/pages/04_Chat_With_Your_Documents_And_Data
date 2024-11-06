@@ -12,6 +12,10 @@ st.title("📊 Chat With Your Data")
 
 MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
+# List to hold documents
+documents = {}
+documents["Transport_Policy"] =  requests.get('https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/documents/Transport_Policy.txt').text
+
 # List to hold datasets
 datasets = {}
 datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
@@ -33,6 +37,24 @@ with st.sidebar:
             " https://platform.openai.com/account/api-keys."
         )
     # First we want to choose the dataset, but we will fill it with choices once we've loaded one
+    documents_container = st.empty()
+    # Add facility to upload a dataset
+    try:
+        uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
+        index_no=0
+        if uploaded_file:
+            # Read in the document, add it to the list of available document. 
+            file_name = "Document"
+            documents[file_name] = uploaded_file.read().decode()
+            # We want to default the radio button to the newly added dataset
+            index_no = len(documents)-1
+    except Exception as e:
+        st.error("File failed to load. Please select a valid CSV file.")
+        print("File failed to load.\n" + str(e))
+    # Radio buttons for documents choice
+    chosen_documents = documents_container.radio(":memo: Choose your data:",documents.keys(),index=index_no)#,horizontal=True,)
+
+
     dataset_container = st.empty()
 
     # Add facility to upload a dataset
