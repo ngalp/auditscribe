@@ -7,6 +7,7 @@ from openai import OpenAI
 import streamlit as st
 from matplotlib import pyplot as plt
 import plotly
+from utility import check_password
 
 st.title("📊 Chat With Your Data")
 
@@ -18,6 +19,12 @@ datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/aud
 datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
 
 with st.sidebar:
+    if not check_password():  
+        st.warning(
+                "Enter the app password to continue."
+            )
+        st.stop()  
+
     openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="openai_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
 
     if not openai_api_key:

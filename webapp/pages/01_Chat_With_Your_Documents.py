@@ -4,6 +4,7 @@
 
 import streamlit as st
 from openai import OpenAI
+from utility import check_password
 
 st.title("📝 Chat With Your Documents")
 
@@ -13,6 +14,12 @@ MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
 
 with st.sidebar:
+    if not check_password():  
+        st.warning(
+                "Enter the app password to continue."
+            )
+        st.stop()  
+
     openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="file_qa_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
 
     if not openai_api_key:
@@ -27,11 +34,6 @@ with st.sidebar:
         return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
         show_full_doc = st.checkbox("Show parsed contents of the document")
 
-    if not check_password():  
-        st.warning(
-                "Enter the app password to continue."
-            )
-        st.stop()  
 
     
 
