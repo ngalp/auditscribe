@@ -68,7 +68,7 @@ if question and openai_api_key:
     client = OpenAI(api_key=openai_api_key)
 
     # Process the uploaded file and question.
-    document = uploaded_file.read().decode()
+    document = datasets[chosen_dataset]
     messages = [
         {
             "role": "user",
