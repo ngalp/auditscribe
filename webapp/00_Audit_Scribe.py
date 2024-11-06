@@ -24,7 +24,7 @@ st.markdown(multi)
 
 #You may use "st.expander" so the disclaimer can be collapsed or expanded.
 
-"""
+multi_notice="""
 
 IMPORTANT NOTICE: This web application is developed as a proof-of-concept prototype. The information provided here is NOT intended for actual usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
 
@@ -33,3 +33,5 @@ Furthermore, please be aware that the LLM may generate inaccurate or incorrect i
 Always consult with qualified professionals for accurate and personalized advice.
 
 """
+
+st.expander(multi_notice)
