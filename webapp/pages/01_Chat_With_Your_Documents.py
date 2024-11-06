@@ -26,7 +26,16 @@ with st.sidebar:
     with st.expander("Advanced Options"):
         return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
         show_full_doc = st.checkbox("Show parsed contents of the document")
-        
+
+    if not check_password():  
+        st.warning(
+                "Enter the app password to continue."
+            )
+        st.stop()  
+
+    
+
+ 
 
 uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
 
