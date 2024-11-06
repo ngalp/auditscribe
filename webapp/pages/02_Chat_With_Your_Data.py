@@ -20,7 +20,6 @@ datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/
 
 with st.sidebar:
     openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="openai_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
-    hf_api_key = st.text_input(label = ":hugging_face: HuggingFace API Key:",key="hf_api_key",help="HF API Key required for Code Llama. Key will not be stored.", type="password",placeholder="Paste your HF API key here")
 
     if not openai_api_key:
         st.warning(

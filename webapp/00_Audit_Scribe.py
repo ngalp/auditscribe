@@ -34,4 +34,5 @@ Always consult with qualified professionals for accurate and personalized advice
 
 """
 
-st.expander("IMPORTANT NOTICE",multi_notice)
+with st.expander("IMPORTANT NOTICE"):
+    st.write(multi_notice)
