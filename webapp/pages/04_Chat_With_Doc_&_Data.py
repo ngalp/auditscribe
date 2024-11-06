@@ -19,8 +19,6 @@ documents["Transport_Policy"] =  requests.get('https://raw.githubusercontent.com
 # List to hold datasets
 datasets = {}
 datasets["Transport"] = pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Transport_Claims.csv")
-datasets["Reimbursement"] =pd.read_csv("https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/data/Employee_Reimbursements.csv")
-
 
 with st.sidebar:
     if not check_password():  
