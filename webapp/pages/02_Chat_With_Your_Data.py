@@ -41,7 +41,7 @@ with st.sidebar:
         index_no=0
         if uploaded_file:
             # Read in the data, add it to the list of available datasets. Give it a nice name.
-            file_name = uploaded_file.name[:-4].capitalize()
+            file_name = "Data"
             datasets[file_name] = pd.read_csv(uploaded_file)
             # We want to default the radio button to the newly added dataset
             index_no = len(datasets)-1
