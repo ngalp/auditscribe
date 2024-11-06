@@ -31,14 +31,14 @@ multi='''## Methodology: Using Large Language Models (LLMs) to "Chat" with Docum
 (Select/Attach Document)
     |
     v
-[Is document selected?] -- No --> (Display Error & Retry) --> (Select/Attach Document)
+[Is document selected?] 
     |
    Yes
     v
 (Select/Attach Data)
     |
     v
-[Is data selected?] -- No --> (Display Error & Retry) --> (Select/Attach Data)
+[Is data selected?] 
     |
    Yes
     v
