@@ -60,8 +60,7 @@ with st.sidebar:
     
 question = st.text_input(
     ":eyes: What would you like to know?",
-    placeholder="Can you give me a short summary?",
-    disabled=not uploaded_file,
+    placeholder="Can you give me a short summary?"
 )
 
 if question and openai_api_key:
