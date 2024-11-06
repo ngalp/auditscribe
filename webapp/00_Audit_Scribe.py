@@ -40,13 +40,13 @@ Always consult with qualified professionals for accurate and personalized advice
 
 """
   
-def verify_password():  
+def check_password():  
     """Returns `True` if the user had the correct password."""  
     def password_entered():  
         """Checks whether a password entered by the user is correct."""  
         if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):  
             st.session_state["password_correct"] = True  
-            del st.session_state["password"]   
+            del st.session_state["password"]  # Don't store the password.  
         else:  
             st.session_state["password_correct"] = False  
     # Return True if the passward is validated.  
@@ -54,7 +54,7 @@ def verify_password():
         return True  
     # Show input for password.  
     st.text_input(  
-        "Please enter password to run the app", type="password", on_change=password_entered, key="password"  
+        "Please enter password below:", type="password", on_change=password_entered, key="password"  
     )  
     if "password_correct" in st.session_state:  
         st.error("😕 Password incorrect. Please try again.")  
@@ -62,6 +62,6 @@ def verify_password():
 
 if not check_password():  
     st.stop()
-    
+
 with st.expander("IMPORTANT NOTICE"):
     st.write(multi_notice)
