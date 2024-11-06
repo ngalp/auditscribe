@@ -35,6 +35,7 @@ with st.sidebar:
 
     model: str = st.selectbox("Model", options=MODEL_LIST)  
 
+    dataset_container = st.empty()
     # Add facility to upload a dataset
     try:
         uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
