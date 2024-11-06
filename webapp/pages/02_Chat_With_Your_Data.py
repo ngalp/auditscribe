@@ -24,7 +24,7 @@ with st.sidebar:
                 "Enter the app password to continue."
             )
         st.stop()  
-        
+
     openai_api_key = st.text_input(label = ":key: OpenAI API Key:", key="openai_api_key", help="OpenAI API Key required for chat completion. Key will not be stored.",type="password",placeholder="Paste your OpenAI API key here")
 
     if not openai_api_key:
@@ -57,7 +57,9 @@ with st.sidebar:
     model: str = st.selectbox("Model", options=MODEL_LIST)  
 
  # Text area for query
-question = st.text_area(":eyes: What would you like to know?",height=10)
+question = st.text_area(":eyes: What would you like to know?",
+                        placeholder="How many records are there?",
+                        height=10)
 go_btn = st.button("Go...")
 
 if question and openai_api_key:

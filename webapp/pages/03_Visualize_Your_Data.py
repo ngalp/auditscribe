@@ -57,7 +57,9 @@ with st.sidebar:
     model: str = st.selectbox("Model", options=MODEL_LIST)  
 
  # Text area for query
-question = st.text_area(":eyes: What would you like to know?",height=10)
+question = st.text_area(":eyes: What would you like to know?",
+                        placeholder="Show me the top ten person by value",
+                        height=10)
 go_btn = st.button("Go...")
 
 if question and openai_api_key:
