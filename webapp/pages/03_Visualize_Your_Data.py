@@ -1,5 +1,5 @@
 #################################################################################
-# the second section is adapted from https://github.com/frog-land/Chat2VIS_Streamlit/blob/main/Chat2VIS.py
+# the section is adapted (not direct copy) from https://github.com/frog-land/Chat2VIS_Streamlit/blob/main/Chat2VIS.py
 #################################################################################
 
 import pandas as pd

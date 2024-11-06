@@ -1,5 +1,5 @@
 ####################
-# the first section is adapted from https://github.com/mmz-001/knowledge_gpt/blob/main/knowledge_gpt/main.py
+# the section is adapted (not direct copy) from https://github.com/mmz-001/knowledge_gpt/blob/main/knowledge_gpt/main.py
 ####################
 
 import streamlit as st
@@ -14,9 +14,9 @@ EMBEDDING = "openai"
 VECTOR_STORE = "faiss"
 MODEL_LIST = ["gpt-3.5-turbo", "gpt-4"]
 
-# List to hold datasets
-datasets = {}
-datasets["Transport_Policy"] =  requests.get('https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/documents/Transport_Policy.txt').text
+# List to hold documents
+documents = {}
+documents["Transport_Policy"] =  requests.get('https://raw.githubusercontent.com/ngalp/auditscribe/refs/heads/main/webapp/documents/Transport_Policy.txt').text
 
 with st.sidebar:
     if not check_password():  
@@ -35,7 +35,7 @@ with st.sidebar:
 
     model: str = st.selectbox("Model", options=MODEL_LIST)  
 
-    dataset_container = st.empty()
+    documents_container = st.empty()
     # Add facility to upload a dataset
     try:
         uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
@@ -43,14 +43,14 @@ with st.sidebar:
         if uploaded_file:
             # Read in the document, add it to the list of available document. 
             file_name = "Document"
-            datasets[file_name] = uploaded_file.read().decode()
+            documents[file_name] = uploaded_file.read().decode()
             # We want to default the radio button to the newly added dataset
-            index_no = len(datasets)-1
+            index_no = len(documents)-1
     except Exception as e:
         st.error("File failed to load. Please select a valid CSV file.")
         print("File failed to load.\n" + str(e))
-    # Radio buttons for dataset choice
-    chosen_dataset = dataset_container.radio(":memo: Choose your data:",datasets.keys(),index=index_no)#,horizontal=True,)
+    # Radio buttons for documents choice
+    chosen_documents = documents_container.radio(":memo: Choose your data:",documents.keys(),index=index_no)#,horizontal=True,)
 
     with st.expander("Advanced Options"):
         #return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
@@ -68,7 +68,7 @@ if question and openai_api_key:
     client = OpenAI(api_key=openai_api_key)
 
     # Process the uploaded file and question.
-    document = datasets[chosen_dataset]
+    document = documents[chosen_documents]
     messages = [
         {
             "role": "user",
