@@ -31,6 +31,15 @@ Manual templates lack the flexibility to adapt to varying contexts in audit comm
 
 Audit Scribe aligns with the organization's goals of increasing operational efficiency and reducing costs. Initially, 50 auditors will benefit, but the tool has potential for broader use across other departments in compliance, risk management, and auditing.
 
+### Prototype
+This initial prototype showcases the viability of LLMs to help with document and data related tasks, including visualizations.
+
+The prototype features the following functionality:
+- **Chat With Your Documents:** Allows the use of LLMs to summarize and answer questions from text
+- **Chat With Your Data:** Allows the use of LLMs to analyzing and deriving insights from data
+- **Visualize Your Data:** Allows the use of LLMs to generate data visualizations (e.g., charts, graphs) based on the data and the questions posed.
+- **Chat With Your Documents & data:** Allows the use of LLMs to answer questions based on both documents and datasets. (Work in progress)
+
 ### Data Classification & Sensitivity
 
 - **Restricted / Sensitive**: Normal.
