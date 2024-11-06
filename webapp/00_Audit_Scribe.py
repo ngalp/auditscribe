@@ -2,7 +2,6 @@ import streamlit as st
 from PIL import Image
 import requests
 from io import BytesIO  
-from utility import check_password
 
 st.set_page_config(page_title="✏️ Audit Scribe", layout="wide")
 #st.set_page_config(page_title="Audit Scribe",  layout="wide")
@@ -11,7 +10,6 @@ st.set_page_config(page_title="✏️ Audit Scribe", layout="wide")
 #icon =Image.open(BytesIO(requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/icon.ico?raw=true').content)) 
 #st.logo(logo,  link='https://auditscribe.streamlit.app', icon_image=icon)
 
-# You can always call this function where ever you want
 st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
 multi='''👋 Say hello to **Audit Scribe** ✏️—the friendly, always-ready virtual assistant here to supercharge your audit workflow! Whether you’re 📝 drafting emails, 🔍 clarifying policies, or 📊 summarizing findings, Audit Scribe takes the heavy lifting out of repetitive tasks. 

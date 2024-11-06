@@ -4,40 +4,36 @@ import requests
 from io import BytesIO  
 from utility import check_password
 
-st.set_page_config(page_title="✏️ Audit Scribe", layout="wide")
-#st.set_page_config(page_title="Audit Scribe",  layout="wide")
-
-#logo =Image.open(BytesIO(requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/logo.ico?raw=true').content))
-#icon =Image.open(BytesIO(requests.get('https://github.com/ngalp/auditscribe/blob/main/webapp/logo/icon.ico?raw=true').content)) 
-#st.logo(logo,  link='https://auditscribe.streamlit.app', icon_image=icon)
+st.set_page_config(page_title="✏️ Audit Scribe - About Us", layout="wide")
 
 # You can always call this function where ever you want
 st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
-multi='''👋 Say hello to **Audit Scribe** ✏️—the friendly, always-ready virtual assistant here to supercharge your audit workflow! Whether you’re 📝 drafting emails, 🔍 clarifying policies, or 📊 summarizing findings, Audit Scribe takes the heavy lifting out of repetitive tasks. 
+multi='''## Problem Statement
 
-With smart, AI-powered insights at your fingertips, you’ll breeze through audits with confidence and focus on what really matters—💡 driving impactful results. Just ask away, and let Audit Scribe be your go-to companion, making audits smoother, faster, and even a little more fun! 🚀
+Auditors spend a significant amount of time (1-2 hours daily) drafting and sending emails to address audit anomalies, request information, and reference policies. This manual process detracts from higher-value tasks like data analysis, risk assessments, and document reviews. It also increases the risk of human error, potentially leading to missed anomalies or incomplete responses. With about 50 auditors impacted, this inefficiency represents a significant productivity loss and potential audit inaccuracies. 
 
-Your audit journey just got a whole lot easier—click on the side bar options to get started! 🎉
+**Key Question:** How can the email drafting process be streamlined to save time and improve accuracy, while allowing auditors to maintain control over the final communications?
 
-* Chat With Your Documents
-* Chat with Your Data
-* Visualise Your Data
+## Proposed Solution
+
+**Audit Scribe** is an AI-powered tool designed to automate the email drafting process. By using Large Language Models (LLMs), Audit Scribe generates first drafts of emails that address audit anomalies, reference relevant policies, and suggest appropriate tone and style adjustments based on the anomaly's severity. Auditors will review and refine the drafts to ensure accuracy and maintain control over the final communication.
+
+**Why Not Manual Templates?**  
+Manual templates lack the flexibility to adapt to varying contexts in audit communications. They are rigid, require manual adjustments, and increase the risk of inefficiency and errors.
+
+## Impact
+
+- **Efficiency Gains:** Reduces email drafting time from 1-2 hours daily to 15-30 minutes for review and approval.
+- **Improved Accuracy:** Ensures consistency, reduces human error, and enhances the quality of communication through automatic policy referencing and customizable tone based on anomaly severity.
+
+## Project Sponsors & Users
+
+Audit Scribe aligns with the organization's goals of increasing operational efficiency and reducing costs. Initially, 50 auditors will benefit, but the tool has potential for broader use across other departments in compliance, risk management, and auditing.
+
+## Data Classification & Sensitivity
+
+- **Restricted / Sensitive**: Normal.
 '''
 
 st.markdown(multi)
-
-#You may use "st.expander" so the disclaimer can be collapsed or expanded.
-
-multi_notice="""
-
-This web application is developed as a proof-of-concept prototype. The information provided here is NOT intended for actual usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
-
-Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. You assume full responsibility for how you use any generated output.
-
-Always consult with qualified professionals for accurate and personalized advice.
-
-"""
-
-with st.expander("IMPORTANT NOTICE"):
-    st.write(multi_notice)
