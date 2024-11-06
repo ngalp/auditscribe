@@ -64,7 +64,7 @@ question = st.text_input(
     disabled=not uploaded_file,
 )
 
-if uploaded_file and question and openai_api_key:
+if question and openai_api_key:
     # Create an OpenAI client.
     client = OpenAI(api_key=openai_api_key)
 
