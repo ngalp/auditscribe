@@ -4,6 +4,7 @@
 
 import pandas as pd
 from openai import OpenAI
+import requests
 import streamlit as st
 import warnings
 from utility import check_password
