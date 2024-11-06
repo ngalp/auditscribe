@@ -21,6 +21,7 @@ Your audit journey just got a whole lot easier—click on the side bar options t
 * Chat With Your Documents
 * Chat with Your Data
 * Visualise Your Data
+* Chat With Your DocData (Work in Progress)
 '''
 
 st.markdown(multi)
