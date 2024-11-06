@@ -31,7 +31,7 @@ with st.sidebar:
 uploaded_file = st.file_uploader("Upload a pdf, docx, or txt file", type=["pdf", "docx", "txt"])
 
 question = st.text_input(
-    "Ask something about the article",
+    ":eyes: What would you like to know?",
     placeholder="Can you give me a short summary?",
     disabled=not uploaded_file,
 )
