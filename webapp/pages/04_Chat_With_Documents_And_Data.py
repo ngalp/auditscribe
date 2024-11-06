@@ -87,6 +87,7 @@ go_btn = st.button("Go...")
 if question and openai_api_key:
     # Create an OpenAI client
     client = OpenAI(api_key=openai_api_key)
+    document = documents[chosen_documents]
     data_string = datasets[chosen_dataset].to_csv(header=None, index=False).strip('\n').split('\n')
     data_desc = "The dataframe has columns '" \
             + "','".join(str(x) for x in datasets[chosen_dataset].columns) + "'. "
@@ -97,11 +98,11 @@ if question and openai_api_key:
         elif datasets[chosen_dataset].dtypes[i]=="int64" or datasets[chosen_dataset].dtypes[i]=="float64":
             data_desc = data_desc + "\nThe column '" + i + "' is type " + str(datasets[chosen_dataset].dtypes[i]) + " and contains numeric values. "   
  
-    dataqa_prompt = "Given the dataframe, answer the following question:"
+    dataqa_prompt = "Given the document and dataframe, answer the following question:"
     messages = [
         {
             "role": "user",
-            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question}  \n\n---\n\n {data_desc} \n\n---\n\n {data_string}  ",
+            "content": f"{dataqa_prompt} \n\n---\n\n Question: {question}  \n\n---\n\n Document: {document} \n\n---\n\n Dataframe description: {data_desc} \n\n---\n\n \n\n---\n\n Dataframe: {data_string}  ",
         }
         ]
 
