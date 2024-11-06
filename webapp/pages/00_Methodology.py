@@ -11,6 +11,48 @@ st.markdown("## ✏️ Audit Scribe – Your Audit Assistant!")
 
 multi='''## Methodology: Using Large Language Models (LLMs) to "Chat" with Documents and Data
 
+(Start)
+    |
+    v
+(Enter Password)
+    |
+    v
+[Is password correct?] -- No --> (Display Error & Retry) --> (Enter Password)
+    |
+   Yes
+    v
+(Enter OpenAI API Key)
+    |
+    v
+[Is API key valid?] -- No --> (Display Error & Retry) --> (Enter OpenAI API Key)
+    |
+   Yes
+    v
+(Select/Attach Document)
+    |
+    v
+[Is document selected?] -- No --> (Display Error & Retry) --> (Select/Attach Document)
+    |
+   Yes
+    v
+(Select/Attach Data)
+    |
+    v
+[Is data selected?] -- No --> (Display Error & Retry) --> (Select/Attach Data)
+    |
+   Yes
+    v
+(Key in Question)
+    |
+    v
+(Wait for Response)
+    |
+    v
+(Display Response)
+    |
+    v
+(End)
+
 ### Introduction
 
 Large Language Models (LLMs) like GPT-4 have revolutionized how we interact with documents, data, and text-based content. By leveraging the conversational capabilities of LLMs, organizations can streamline processes such as document analysis, data extraction, and decision-making support. This methodology outlines how LLMs can be employed to "chat" with documents and structured data, making them powerful tools for tasks such as summarization, answering queries, extracting insights, and identifying patterns.
