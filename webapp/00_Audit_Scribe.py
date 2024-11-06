@@ -1,7 +1,9 @@
 import streamlit as st
 from PIL import Image
 import requests
-from io import BytesIO
+from io import BytesIO  
+import random  
+import hmac  
 
 st.set_page_config(page_title="✏️ Audit Scribe", layout="wide")
 #st.set_page_config(page_title="Audit Scribe",  layout="wide")
@@ -37,6 +39,29 @@ Furthermore, please be aware that the LLM may generate inaccurate or incorrect i
 Always consult with qualified professionals for accurate and personalized advice.
 
 """
+  
+def verify_password():  
+    """Returns `True` if the user had the correct password."""  
+    def password_entered():  
+        """Checks whether a password entered by the user is correct."""  
+        if hmac.compare_digest(st.session_state["password"], st.secrets["password"]):  
+            st.session_state["password_correct"] = True  
+            del st.session_state["password"]   
+        else:  
+            st.session_state["password_correct"] = False  
+    # Return True if the passward is validated.  
+    if st.session_state.get("password_correct", False):  
+        return True  
+    # Show input for password.  
+    st.text_input(  
+        "Please enter password to run the app", type="password", on_change=password_entered, key="password"  
+    )  
+    if "password_correct" in st.session_state:  
+        st.error("😕 Password incorrect. Please try again.")  
+    return False
 
+if not check_password():  
+    st.stop()
+    
 with st.expander("IMPORTANT NOTICE"):
     st.write(multi_notice)
