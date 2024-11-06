@@ -50,7 +50,7 @@ with st.sidebar:
         st.error("File failed to load. Please select a valid CSV file.")
         print("File failed to load.\n" + str(e))
     # Radio buttons for dataset choice
-    chosen_dataset = dataset_container.radio(":bar_chart: Choose your data:",datasets.keys(),index=index_no)#,horizontal=True,)
+    chosen_dataset = dataset_container.radio(":memo: Choose your data:",datasets.keys(),index=index_no)#,horizontal=True,)
 
     with st.expander("Advanced Options"):
         #return_all_chunks = st.checkbox("Show all chunks retrieved from vector search")
