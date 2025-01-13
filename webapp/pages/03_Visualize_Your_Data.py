@@ -58,8 +58,7 @@ with st.sidebar:
 
  # Text area for query
 question = st.text_area(":eyes: What would you like to know?",
-                        placeholder="Show me the top ten person by value",
-                        height=10)
+                        placeholder="Show me the top ten person by value")
 go_btn = st.button("Go...")
 
 if question and openai_api_key:

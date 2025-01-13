@@ -77,8 +77,7 @@ with st.sidebar:
 
  # Text area for query
 question = st.text_area(":eyes: What would you like to know?",
-                        placeholder="Based on the dataset, identify the top claimant and draft an email to him to sample check quoting the transport claim policy.",
-                        height=10)
+                        placeholder="Based on the dataset, identify the top claimant and draft an email to him to sample check quoting the transport claim policy.")
 go_btn = st.button("Go...")
 
 if question and openai_api_key:
